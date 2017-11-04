@@ -505,6 +505,8 @@ public class MainFrame extends javax.swing.JFrame {
                             beanInfo.setType("String");
                         } else if (str.startsWith("datetime")) {
                             beanInfo.setType("Date");
+                        } else if (str.startsWith("date")) {
+                            beanInfo.setType("Date");
                         } else if (str.startsWith("timestamp")) {
                             beanInfo.setType("Date");
                         } else if (str.startsWith("int")) {
@@ -658,7 +660,7 @@ public class MainFrame extends javax.swing.JFrame {
                     sbxml.append(space8).append("</selectKey>");
                     sbxml.append(space4).append("</insert>\n");
                     //删除
-                    sbxml.append(space4).append("<delete id=\"delete\" parameterType=\"java.lang.String\" flushCache=\"false\">\n");
+                    sbxml.append(space4).append("<delete id=\"delete\" flushCache=\"false\">\n");
                     sbxml.append(space8).append("DELETE FROM ").append(tableName);
                     sbxml.append(" WHERE id = #{id}\n").append(space4).append("</delete>\n");//TODO id
 
@@ -692,7 +694,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                     //findById
                     sbxml.append(space4).append("<select id=\"findById\" resultType=\"");
-                    sbxml.append(domainFullName).append("\" parameterType=\"String\" useCache=\"false\">\n");
+                    sbxml.append(domainFullName).append("\" useCache=\"false\">\n");
                     sbxml.append(space8).append("SELECT <include refid=\"baseColumnList\" /> FROM ").append(tableName).append(" WHERE id ");
                     sbxml.append(" = #{id}");
                     sbxml.append("\n").append(space4).append("</select>\n");
